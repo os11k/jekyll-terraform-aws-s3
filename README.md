@@ -79,4 +79,4 @@ terraform apply -var-file="blog.tfvars"
 
 ### Complete manual to deploy Jekyll using pipelines and infrastructure managed in Terraform.
 
-[jekyll-terraform-gitlab-pipeline](https://blog.volunge.net/jekyll/update/2024/12/19/jekyll-terraform-gitlab-pipeline.html)
+[jekyll-terraform-gitlab-pipeline](https://cyberpunk.tools/jekyll/update/2024/12/19/jekyll-terraform-gitlab-pipeline.html)
