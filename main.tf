@@ -176,6 +176,22 @@ resource "aws_route53_record" "static_site_subdomains" {
 }
 
 #######################################
+# Response Headers Policy for HSTS
+#######################################
+resource "aws_cloudfront_response_headers_policy" "hsts_policy" {
+  name = "hsts-policy"
+
+  security_headers_config {
+    strict_transport_security {
+      access_control_max_age_sec = 63072000
+      include_subdomains         = true
+      preload                    = true
+      override                   = true
+    }
+  }
+}
+
+#######################################
 # Cloudfront Distribution
 #######################################
 resource "aws_cloudfront_distribution" "static_site" {
@@ -199,6 +215,8 @@ resource "aws_cloudfront_distribution" "static_site" {
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = var.domain
+
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.hsts_policy.id
 
     forwarded_values {
       query_string = false
