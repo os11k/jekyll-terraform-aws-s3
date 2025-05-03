@@ -179,7 +179,7 @@ resource "aws_route53_record" "static_site_subdomains" {
 # Response Headers Policy for HSTS
 #######################################
 resource "aws_cloudfront_response_headers_policy" "hsts_policy" {
-  name = "hsts-policy"
+  name = "${replace(var.domain, ".", "-")}-hsts-policy"
 
   security_headers_config {
     strict_transport_security {
